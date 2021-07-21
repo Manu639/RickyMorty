@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Api Rick y Morty</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -14,22 +17,22 @@
     <header>
         <div class="wrapper">
             <h1>Consultas a la API de Rick y Morty</h1>
-            <select name="" id="genderFilter">
+            <label for="genderFilter">Seleccione un género: </label>
+            <select name="genderFilter" id="genderFilter">
                 <option value="">Seleccione una opción</option>
                 <option value="genderless">Sin genero identificado</option>
                 <option value="unknown">No hay datos al respecto</option>
                 <option value="male">Masculino</option>
                 <option value="female">Femenino</option>
             </select>
-            <nav class='pageSelector'>
-                <ul>
-                </ul>
+            <nav id='pageSelector'>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="wrapper">
+            <aside><i class="fas fa-arrow-circle-left"></i></aside>
             <section id="characters">
                 <!-- <article>
                         <figure>
@@ -42,6 +45,7 @@
                         <button id="goToCharacter">Ir</button>
                     </article> -->
             </section>
+            <aside><i class="fas fa-arrow-circle-right"></i></aside>
         </div>
     </main>
     <script src="js/main.js" type='module'></script>

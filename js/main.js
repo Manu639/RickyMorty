@@ -5,14 +5,14 @@ const api = new Api(urlBase);
 
 let sectionCharacters = document.querySelector('#characters');
 let selectGender = document.querySelector('#genderFilter');
+let navPage = document.querySelectorAll('main aside i')
 
 
 //Get Data from the API functions
 
-//Get full data from the API
+//Get and print pType data from the API
 async function loadData(pType, pAttributte = "", pValue = "") {
-    let data = await api.getInfo(pType)
-
+    let data = await api.getInfo(pType, pAttributte, pValue)
     printCharacters(data.results, sectionCharacters)
 }
 
@@ -22,10 +22,11 @@ async function loadSortedData(pType, pAttributte, pValue) {
     sectionCharacters.innerHTML = "";
     printCharacters(data.results, sectionCharacters)
 }
+
 //End get data form the Api functions
 
 
-//Events
+//Events functions
 
 /* filterGender Event */
 selectGender.addEventListener('change', filterGender);
@@ -37,8 +38,24 @@ function filterGender(event) {
 /* End filterGender Event */
 
 
-//End Events
+/* Move Page Event */
 
+navPage.forEach(button => button.addEventListener('click', movePage))
+
+function movePage() {
+    sectionCharacters.innerHTML = "";
+    loadData()
+
+}
+
+
+
+
+/* End Move Page Event */
+
+//End Events functions
+
+//Prints functions
 
 /* Print a list of characters with printCharacters*/
 function printCharacters(pObjectsList, pSection) {
@@ -48,7 +65,6 @@ function printCharacters(pObjectsList, pSection) {
 /*
     Gets: An Object Character and the DOM section where needs to be displayed
     Return: Display the card on the document
-    Print a unique character
 */
 function printCharacter(pCharacter, pSection) {
     let article = document.createElement('article');
@@ -80,6 +96,8 @@ function printCharacter(pCharacter, pSection) {
 
     pSection.appendChild(article)
 }
+
+//End Prints functions
 
 
 
