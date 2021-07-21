@@ -1,25 +1,54 @@
 import Api from "./Api.js";
 
-const urlBase = "https://rickandmortyapi.com/api/"
-const api = new Api(urlBase)
+const urlBase = "https://rickandmortyapi.com/api/";
+const api = new Api(urlBase);
 
-let sectionCharacters = document.querySelector('#characters')
+let sectionCharacters = document.querySelector('#characters');
+let selectGender = document.querySelector('#genderFilter');
 
-async function loadData(ptype, pAttributte = "", pValue = "") {
-    let data = await api.getInfo('character')
+
+//Get Data from the API functions
+
+//Get full data from the API
+async function loadData(pType, pAttributte = "", pValue = "") {
+    let data = await api.getInfo(pType)
 
     printCharacters(data.results, sectionCharacters)
 }
 
-loadData()
+//Get sorted data from the API
+async function loadSortedData(pType, pAttributte, pValue) {
+    let data = await api.getSortedInfo(pType, pAttributte, pValue)
+    sectionCharacters.innerHTML = "";
+    printCharacters(data.results, sectionCharacters)
+}
+//End get data form the Api functions
 
+
+//Events
+
+/* filterGender Event */
+selectGender.addEventListener('change', filterGender);
+
+function filterGender(event) {
+    let value = event.target.value
+    loadSortedData('character', 'gender', value)
+}
+/* End filterGender Event */
+
+
+//End Events
+
+
+/* Print a list of characters with printCharacters*/
 function printCharacters(pObjectsList, pSection) {
     pObjectsList.forEach(element => printCharacter(element, pSection));
 }
 
-
-/* Print character cardInfo
-    Gets a Object Character and the DOM section where needs to be displayed
+/*
+    Gets: An Object Character and the DOM section where needs to be displayed
+    Return: Display the card on the document
+    Print a unique character
 */
 function printCharacter(pCharacter, pSection) {
     let article = document.createElement('article');
@@ -30,9 +59,6 @@ function printCharacter(pCharacter, pSection) {
     let p = document.createElement('p');
     let divButton = document.createElement('div');
     let a = document.createElement('a')
-
-    a.addEventListener('click', goToCharacter)
-    a.dataset.characterId = pCharacter.id
 
     div.className = 'cardInfo'
     divButton.className = 'characterButton'
@@ -55,7 +81,7 @@ function printCharacter(pCharacter, pSection) {
     pSection.appendChild(article)
 }
 
-function goToCharacter(event) {
-    let characterId = event.target.dataset.id
 
-}
+
+
+loadData('character')

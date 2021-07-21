@@ -12,17 +12,24 @@
 <body>
 
     <header>
-        <h1>Consultas a la API de Rick y Morty</h1>
+        <div class="wrapper">
+            <h1>Consultas a la API de Rick y Morty</h1>
+            <select name="" id="genderFilter">
+                <option value="">Seleccione una opción</option>
+                <option value="genderless">Sin genero identificado</option>
+                <option value="unknown">No hay datos al respecto</option>
+                <option value="male">Masculino</option>
+                <option value="female">Femenino</option>
+            </select>
+            <nav class='pageSelector'>
+                <ul>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <div class="wrapper">
-            <select name="" id="genreFilter">
-                <option value="">Seleccione una opción</option>
-                <option value="nonDefined">Sin genero</option>
-                <option value="male">Masculino</option>
-                <option value="female">Femenino</option>
-            </select>
             <section id="characters">
                 <!-- <article>
                         <figure>
