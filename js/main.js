@@ -17,6 +17,10 @@ function printCharacters(pObjectsList, pSection) {
     pObjectsList.forEach(element => printCharacter(element, pSection));
 }
 
+
+/* Print character cardInfo
+    Gets a Object Character and the DOM section where needs to be displayed
+*/
 function printCharacter(pCharacter, pSection) {
     let article = document.createElement('article');
     let figure = document.createElement('figure');
@@ -27,15 +31,17 @@ function printCharacter(pCharacter, pSection) {
     let divButton = document.createElement('div');
     let a = document.createElement('a')
 
-
     a.addEventListener('click', goToCharacter)
     a.dataset.characterId = pCharacter.id
 
+    div.className = 'cardInfo'
+    divButton.className = 'characterButton'
     img.src = pCharacter.image;
     img.alt = pCharacter.name;
-    a.innerText = 'Ver Personaje'
+    a.innerText = 'Go'
+    a.href = pCharacter.url
     h3.innerText = pCharacter.name;
-    p.innerText = pCharacter.status;
+    p.innerText = 'Estado: ' + pCharacter.status;
 
     figure.appendChild(img);
     div.appendChild(h3);
